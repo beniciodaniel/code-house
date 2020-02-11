@@ -1,3 +1,6 @@
+const BookDao = require('../infra/book-dao');
+const db = require('../../config/database');
+
 module.exports = (app) => {
   app.get('/', (req, res) => {
     res.send(
@@ -8,16 +11,25 @@ module.exports = (app) => {
             </head>
             <body>
                 <h1> Code House </h1>
-            </body> 
+            </body>     
         </html>
         `
     )
   });
   
-  app.get('/livros', (req, res) => {
-    res.marko(
-      require('../views/books/list/list.marko')
-    )
-  });
+  app.get('/books', (req, res) => {
+
+    const bookDao = new BookDao(db);
+    
+    bookDao.list()
+      .then(books => res.marko (
+          require('../views/books/list/list.marko'), 
+          {
+            books: books
+          }
+        )
+      )
+      .catch(error => console.log(error));
+  })
 };
 

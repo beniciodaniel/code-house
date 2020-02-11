@@ -12,9 +12,9 @@
           </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Node Fundamentals</td>
+        <tr for(book in data.books)>
+          <td>${book.id}</td>
+          <td>${book.title}</td>
         </tr>
       </tbody>
 

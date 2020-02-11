@@ -9,6 +9,8 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_loadTag = marko_helpers.t,
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
+    marko_forEach = marko_helpers.f,
+    marko_escapeXml = marko_helpers.x,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/async/await-reorderer-tag"));
 
@@ -19,11 +21,25 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Books List </h1><table><thead><tr><th>ID</th><th>Title</th></tr></thead><tbody><tr><td>1</td><td>Node Fundamentals</td></tr></tbody></table>");
+  out.w("<h1> Books List </h1><table><thead><tr><th>ID</th><th>Title</th></tr></thead><tbody>");
+
+  var for__11 = 0;
+
+  marko_forEach(data.books, function(book) {
+    var keyscope__12 = "[" + ((for__11++) + "]");
+
+    out.w("<tr><td>" +
+      marko_escapeXml(book.id) +
+      "</td><td>" +
+      marko_escapeXml(book.title) +
+      "</td></tr>");
+  });
+
+  out.w("</tbody></table>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "14");
+  await_reorderer_tag({}, out, __component, "16");
 
   out.w("</body> </html>");
 }
