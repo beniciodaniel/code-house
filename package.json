@@ -1,0 +1,28 @@
+{
+  "name": "code-house",
+  "version": "1.0.0",
+  "description": "Code House",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js --ignore *.marko.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beniciodaniel/code-house.git"
+  },
+  "author": "Benicio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beniciodaniel/code-house/issues"
+  },
+  "homepage": "https://github.com/beniciodaniel/code-house#readme",
+  "dependencies": {
+    "express": "4.16.3",
+    "marko": "^4.13.4-1",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  }
+}
