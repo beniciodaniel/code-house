@@ -41,8 +41,18 @@ module.exports = (app) => {
     const bookDao = new BookDao(db);
 
     bookDao.add(req.body)
-      .then()
+      .then(res.redirect('/books'))
       .catch(error => console.log(error));
   })
-};
+
+
+  app.get('/books/:id', (req, res) => {
+    const bookDao = new BookDao(db);
+    const id = req.params.id;
+
+    bookDao.searchById(id)
+      .then(row => res.json(row))
+      .catch(error => console.log(error));
+  })
+}
 
