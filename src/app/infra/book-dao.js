@@ -42,19 +42,66 @@ class BookDao {
 
   searchById(id) {
     return new Promise((resolve, reject) => {
-      console.log(id);
-      this._db.get(`SELECT * FROM BOOKS WHERE id = ?`,[id],
-      (error, row) => {
-        if(error){
-          console.log(error);
-          return reject("Oops, where is this book?");
+      this._db.get(
+        `
+          SELECT * FROM books WHERE id = ?
+        `,
+        [id],
+        (error, book) => {
+          if(error){      
+            return reject("Oops, where is this book?");
+          }
+            return resolve(console.log(book));
         }
-        if(row){
-          return resolve(console.log(row));
-        }
-      })
+      );
     })
   }
+
+  update(book) {
+    return new Promise((resolve, reject) => {
+      this._db.run(
+        `
+          UPDATE books SET
+          title       = ?,
+          price       = ?,
+          description = ?,
+          WHERE id    = ?
+        `,
+        [
+          book.titile,
+          book.price,
+          book.description,
+          book.id
+        ],
+        error => {
+          if (error) {
+            return reject("We couldn´t update your book! Sorry.")
+          }
+          resolve();
+        }
+      );
+    });
+  }
+
+
+  remove(id) {
+    return new Promise((resolve, reject) => {
+        this._db.get(
+            `
+                DELETE 
+                FROM books
+                WHERE id = ?
+            `,
+            [id],
+            (error) => {
+                if (error) {
+                    return reject('Sorry, we couldn´t delete the book!');
+                }
+                return resolve();
+            }
+        );
+    });
+}
 
 }
 

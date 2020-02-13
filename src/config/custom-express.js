@@ -4,6 +4,8 @@ require('marko/express');
 const express = require('express');
 const app = express();
 
+app.use('/static', express.static('src/app/public'));
+
 app.use(express.urlencoded({
   extended: true
 }));
