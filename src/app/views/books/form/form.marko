@@ -3,20 +3,23 @@
         <h1>Books Register</h1>
 
         <form action="/books" method="post">
-
-            <input type="hidden" id="id" name="id" />
+            <div if(data.book.id)>
+                <input type="hidden" name="_method" value="PUT"/>
+                <input type="hidden" id="id" name="id" value="${data.book.id}">                
+            </div>
+            
 
             <div>
                 <label for="title">Title:</label>
-                <input type="text" id="title" name="title" placeholder="Title" />
+                <input type="text" id="title" name="title" placeholder="Title" value="${data.book.title}" />
             </div>
             <div>
                 <label for="price">Price:</label>
-                <input type="text" id="price" name="price" placeholder="150.25" />
+                <input type="text" id="price" name="price" placeholder="150.25" value="${data.book.price}"/>
             </div>
             <div>
                 <label for="description">Description:</label>
-                <textarea cols="20" rows="10"  id="description" name="description" placeholder="Books..."></textarea>
+                <textarea cols="20" rows="10"  id="description" name="description" placeholder="Books...">${data.book.description}</textarea>
             </div>
 
             <input type="submit" value="Save" />

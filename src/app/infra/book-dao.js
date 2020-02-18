@@ -51,7 +51,7 @@ class BookDao {
           if(error){      
             return reject("Oops, where is this book?");
           }
-            return resolve(console.log(book));
+            return resolve(book);
         }
       );
     })
@@ -62,22 +62,22 @@ class BookDao {
       this._db.run(
         `
           UPDATE books SET
-          title       = ?,
-          price       = ?,
-          description = ?,
-          WHERE id    = ?
+          title = ?,
+          price = ?,
+          description = ?
+          WHERE id = ?
         `,
         [
-          book.titile,
+          book.title,
           book.price,
           book.description,
           book.id
         ],
         error => {
           if (error) {
-            return reject("We couldn´t update your book! Sorry.")
+            return reject(console.log(error))
           }
-          resolve();
+          // resolve();
         }
       );
     });

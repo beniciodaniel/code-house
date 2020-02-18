@@ -37,7 +37,9 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(book.title) +
       "</td><td>" +
       marko_escapeXml(book.price) +
-      "</td><td><a href=\"#\">Edit</a></td><td><a href=\"#\" data-ref=\"" +
+      "</td><td><a href=\"/books/form/" +
+      marko_escapeXmlAttr(book.id) +
+      "\">Edit</a></td><td><a href=\"#\" data-ref=\"" +
       marko_escapeXmlAttr(book.id) +
       "\" data-type=\"remove\">Remove</a></td></tr>");
   });
