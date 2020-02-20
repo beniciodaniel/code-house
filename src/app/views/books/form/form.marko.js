@@ -17,29 +17,29 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/static/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/static/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/static/css/casadocodigo.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Books Register</h1><form action=\"/books\" method=\"post\">");
+  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/static/images/logo-casadocodigo.svg\" alt=\"Casa do Código\"></h1></div><div class=\"mainHeader-nav col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1>Books Register</h1><form action=\"/books\" method=\"post\">");
 
   if (data.book.id) {
     out.w("<div><input type=\"hidden\" name=\"_method\" value=\"PUT\"><input type=\"hidden\" id=\"id\" name=\"id\" value=\"" +
       marko_escapeXmlAttr(data.book.id) +
-      "\"><h1>entrei</h1></div>");
+      "\" class=\"form-control\"> </div>");
   }
 
-  out.w("<div><label for=\"title\">Title:</label><input type=\"text\" id=\"title\" name=\"title\" placeholder=\"Title\" value=\"" +
+  out.w("<div class=\"form-group\"><label for=\"title\">Title:</label><input type=\"text\" id=\"title\" name=\"title\" placeholder=\"Title\" value=\"" +
     marko_escapeXmlAttr(data.book.title) +
-    "\"></div><div><label for=\"price\">Price:</label><input type=\"text\" id=\"price\" name=\"price\" placeholder=\"150.25\" value=\"" +
+    "\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"price\">Price:</label><input type=\"text\" id=\"price\" name=\"price\" placeholder=\"150.25\" value=\"" +
     marko_escapeXmlAttr(data.book.price) +
-    "\"></div><div><label for=\"description\">Description:</label><textarea cols=\"20\" rows=\"10\" id=\"description\" name=\"description\" placeholder=\"Books...\">" +
+    "\" class=\"form-control\"></div><div class=\"form-group\"><label for=\"description\">Description:</label><textarea cols=\"20\" rows=\"10\" id=\"description\" name=\"description\" placeholder=\"Books...\" class=\"form-control\">" +
     marko_escapeXml(data.book.description) +
-    "</textarea></div><input type=\"submit\" value=\"Save\"></form>");
+    "</textarea></div><input type=\"submit\" value=\"Save\" class=\"btn btn-primary\"></form></div></main><footer class=\"footer\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><img src=\"/static/images/logo-rodape.svg\" class=\"logo-rodape\"></div><div class=\"col-8\"><ul class=\"social\"><li><a href=\"http://www.facebook.com/casadocodigo\" class=\"compartilhar-facebook\" target=\"_blank\">/CasaDoCodigo</a></li><li><a href=\"http://www.twitter.com/casadocodigo\" class=\"compartilhar-twitter\" target=\"_blank\">@casadocodigo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "18");
+  await_reorderer_tag({}, out, __component, "44");
 
   out.w("</body></html>");
 }
