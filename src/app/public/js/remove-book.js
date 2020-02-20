@@ -9,7 +9,7 @@ booksTable.addEventListener("click", (event) => {
       .then(response => {
         let tr = target.closest(`#book_${bookId}`);
         tr.remove();
-      })
+      }) 
       .catch(error => console.log(error));
   }
 })

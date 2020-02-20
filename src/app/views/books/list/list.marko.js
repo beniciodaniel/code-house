@@ -18,16 +18,16 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/static/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/static/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/static/css/casadocodigo.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Books List </h1><table id=\"books\"><thead><tr><th>ID</th><th>Title</th><th>Price</th><th>Edit</th><th>Remove</th></tr></thead><tbody>");
+  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/static/images/logo-casadocodigo.svg\" alt=\"Casa do Código\"></h1></div><div class=\"mainHeader-nav col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1> Books List </h1><table id=\"books\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><th>ID</th><th>Title</th><th>Price</th><th>Edit</th><th>Remove</th></tr></thead><tbody>");
 
-  var for__14 = 0;
+  var for__28 = 0;
 
   marko_forEach(data.books, function(book) {
-    var keyscope__15 = "[" + ((for__14++) + "]");
+    var keyscope__29 = "[" + ((for__28++) + "]");
 
     out.w("<tr id=\"book_" +
       marko_escapeXmlAttr(book.id) +
@@ -37,16 +37,18 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(book.title) +
       "</td><td>" +
       marko_escapeXml(book.price) +
-      "</td><td><a href=\"#\">Edit</a></td><td><a href=\"#\" data-ref=\"" +
+      "</td><td><a href=\"/books/form/" +
+      marko_escapeXmlAttr(book.id) +
+      "\">Edit</a></td><td><a href=\"#\" data-ref=\"" +
       marko_escapeXmlAttr(book.id) +
       "\" data-type=\"remove\">Remove</a></td></tr>");
   });
 
-  out.w("</tbody></table><script src=\"/static/js/remove-book.js\"></script>");
+  out.w("</tbody></table></div></main><footer class=\"footer\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><img src=\"/static/images/logo-rodape.svg\" class=\"logo-rodape\"></div><div class=\"col-8\"><ul class=\"social\"><li><a href=\"http://www.facebook.com/casadocodigo\" class=\"compartilhar-facebook\" target=\"_blank\">/CasaDoCodigo</a></li><li><a href=\"http://www.twitter.com/casadocodigo\" class=\"compartilhar-twitter\" target=\"_blank\">@casadocodigo</a></li></ul></div></div></div></footer><script src=\"/static/js/remove-book.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "25");
+  await_reorderer_tag({}, out, __component, "50");
 
   out.w("</body> </html>");
 }
