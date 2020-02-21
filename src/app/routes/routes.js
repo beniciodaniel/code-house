@@ -1,5 +1,6 @@
 const BookDao = require('../infra/book-dao');
 const db = require('../../config/database');
+const { check, validationResult } = require('express-validator/check');
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -28,9 +29,26 @@ module.exports = (app) => {
   })
 
 
-  app.post('/books', (req, res) => {
-    console.log(req.body);
+  app.post('/books', [
+    check('title').isLength({ min: 5 }).withMessage("The field must have at least 5 letters"),
+    check('price').isCurrency().withMessage("Must contain numbers!"),
+  ],(req, res) => {
+    console.log('app.post/books', req.body);
     const bookDao = new BookDao(db);
+
+    const errors  = validationResult(req);
+
+    if(!errors.isEmpty()) {
+      console.log("deu ruim")
+      return res.marko(
+        require('../views/books/form/form.marko'), 
+        {
+          book: req.body, //para manter os dados num request fail
+          errorsValidation: errors.array()
+        }
+      );
+    }
+
     bookDao.add(req.body)
             .then(res.redirect('/books'))
             .catch(error => console.log(error));
