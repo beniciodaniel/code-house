@@ -30,10 +30,10 @@ module.exports = (app) => {
 
 
   app.post('/books', [
-    check('title').isLength({ min: 5 }),
-    check('price').isCurrency(),
+    check('title').isLength({ min: 5 }).withMessage("The field must have at least 5 letters"),
+    check('price').isCurrency().withMessage("Must contain numbers!"),
   ],(req, res) => {
-    console.log(req.body);
+    console.log('app.post/books', req.body);
     const bookDao = new BookDao(db);
 
     const errors  = validationResult(req);
@@ -42,7 +42,10 @@ module.exports = (app) => {
       console.log("deu ruim")
       return res.marko(
         require('../views/books/form/form.marko'), 
-        {book: {}}
+        {
+          book: req.body, //para manter os dados num request fail
+          errorsValidation: errors.array()
+        }
       );
     }
 
