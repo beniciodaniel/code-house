@@ -39,12 +39,6 @@ module.exports = (app) => {
   app.delete(booksRoutes.remove, bookController.remove());
 
 
-  app.get('/books/:id', (req, res) => {
-    const bookDao = new BookDao(db);
-    const id = req.params.id;
-    bookDao.searchById(id)
-      .then(row => res.json(row))
-      .catch(error => console.log(error));
-  })
+  app.get(booksRoutes.detail, bookController.detail());
 }
 

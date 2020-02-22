@@ -10,7 +10,8 @@ class BookController {
       list: '/books',
       register: '/books/form',
       edit: '/books/form/:id',
-      remove: '/books/:id'
+      remove: '/books/:id',
+      detail: '/books/:id'
     }
   }
 
@@ -83,6 +84,18 @@ class BookController {
       bookDao.update(req.body)
               .then(res.redirect(BookController.routes().list))
               .catch(error => console.log(error));
+    }
+  }
+
+  detail(){
+    return (req, res) => {
+      const bookDao = new BookDao(db);
+      const id = req.params.id;
+      bookDao.searchById(id)
+        .then(book => res.marko(
+          require('../views/books/detail/detail.marko'), {book:book}
+        ))
+        .catch(error => console.log(error));
     }
   }
 
