@@ -26,12 +26,12 @@
         <h1>Books Register</h1>
 
         <div if(data.errorsValidation)> 
-          <div class="alert alert-danger" for(error in data.errorsValidation)>
+          <div class="alert alert-danger text-capitalize" for(error in data.errorsValidation)>
             ${error.param} - ${error.msg}
           </div>
         </div>
 
-        <form action="/books" method="post" >
+        <form action="/books/form" method="post" >
           <div if(data.book.id)>
             <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" id="id" name="id" value="${data.book.id}" class="form-control">                

@@ -32,7 +32,7 @@ function render(input, out, __component, component, state) {
     marko_forEach(data.errorsValidation, function(error) {
       var keyscope__21 = "[" + ((for__20++) + "]");
 
-      out.w("<div class=\"alert alert-danger\">" +
+      out.w("<div class=\"alert alert-danger text-capitalize\">" +
         marko_escapeXml(error.param) +
         " - " +
         marko_escapeXml(error.msg) +
@@ -42,7 +42,7 @@ function render(input, out, __component, component, state) {
     out.w("</div>");
   }
 
-  out.w("<form action=\"/books\" method=\"post\">");
+  out.w("<form action=\"/books/form\" method=\"post\">");
 
   if (data.book.id) {
     out.w("<div><input type=\"hidden\" name=\"_method\" value=\"PUT\"><input type=\"hidden\" id=\"id\" name=\"id\" value=\"" +
