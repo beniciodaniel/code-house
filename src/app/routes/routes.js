@@ -10,19 +10,22 @@ const bookController = new BookController();
 
 module.exports = (app) => {
 
-  app.get('/', homeController.home());
+  const homeRoutes = HomeController.routes();
+  const booksRoutes = BookController.routes();
+
+  app.get(homeRoutes.home, homeController.home());
   
   
-  app.get('/books', bookController.list());
+  app.get(booksRoutes.list, bookController.list());
   
   
-  app.get('/books/form', bookController.formCreate());
+  app.get(booksRoutes.register, bookController.formCreate());
   
 
-  app.get('/books/form/:id', bookController.formEdit());
+  app.get(booksRoutes.edit, bookController.formEdit());
 
   
-  app.post('/books/form', [
+  app.post(booksRoutes.register, [
     check('title').isLength({ min: 5 }).withMessage("The field must have at least 5 letters"),
     check('price').isCurrency().withMessage("Must contain numbers!"),
   ], 
@@ -30,10 +33,10 @@ module.exports = (app) => {
   )
 
 
-  app.put('/books/form', bookController.edit());
+  app.put(booksRoutes.register, bookController.edit());
 
 
-  app.delete('/books/:id', bookController.remove());
+  app.delete(booksRoutes.remove, bookController.remove());
 
 
   app.get('/books/:id', (req, res) => {

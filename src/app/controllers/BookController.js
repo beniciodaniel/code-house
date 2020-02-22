@@ -5,6 +5,15 @@ const db = require('../../config/database');
 
 class BookController {
 
+  static routes() {
+    return {
+      list: '/books',
+      register: '/books/form',
+      edit: '/books/form/:id',
+      remove: '/books/:id'
+    }
+  }
+
   list() {
     return (req, res) => {
       
@@ -62,7 +71,7 @@ class BookController {
       }
   
       bookDao.add(req.body)
-              .then(res.redirect('/books'))
+              .then(res.redirect(BookController.routes().list))
               .catch(error => console.log(error));
     }
   }
@@ -72,7 +81,7 @@ class BookController {
       console.log(req.body);
       const bookDao = new BookDao(db);
       bookDao.update(req.body)
-              .then(res.redirect('/books'))
+              .then(res.redirect(BookController.routes().list))
               .catch(error => console.log(error));
     }
   }

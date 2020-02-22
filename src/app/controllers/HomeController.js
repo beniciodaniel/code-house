@@ -1,5 +1,11 @@
 class HomeController {
 
+  static routes() {
+    return {
+      home: '/'
+    }
+  }
+
   home() {
     return (req, res) => {
       res.marko(
