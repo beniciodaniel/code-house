@@ -26,4 +26,28 @@ module.exports = (app) => {
               .catch(error => done(error, false));
     }
   ));
+
+  passport.serializeUser((user, done) => {
+    const userSession = {
+      name: user.name,
+      email: user.email
+    };
+    done(null, userSession);
+  });
+
+  passport.deserializeUser((userSession, done) => {
+    done(null, userSession);
+  });
+
+  app.use(session({
+    secret: 'node beni',
+    genid: (req) => {
+      return uuid()
+    },
+    resave: false,
+    saveUninitialized: false,
+  }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 }
