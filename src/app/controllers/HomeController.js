@@ -4,7 +4,8 @@ class HomeController {
 
   static routes() {
     return {
-      home: '/'
+      home: '/',
+      login: '/login'
     }
   }
 
@@ -13,6 +14,20 @@ class HomeController {
       res.marko(
         templates.base.home
       );
+    }
+  }
+
+  login() {
+    return (req, res) => {
+      res.marko(
+        templates.base.login
+      );
+    }
+  }
+
+  doesLogin() {
+    return (req, res) => {
+      //login logic
     }
   }
 }
