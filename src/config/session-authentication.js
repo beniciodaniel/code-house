@@ -49,5 +49,12 @@ module.exports = (app) => {
   }));
 
   app.use(passport.initialize());
+
   app.use(passport.session());
+
+  //injecao de dependencia
+  app.use((req, res, next) => {
+    req.passport = passport;
+    next();
+  });
 }
