@@ -9,6 +9,7 @@ class BookController {
 
   static routes() {
     return {
+      authenticated: '/books*',
       list: '/books',
       register: '/books/form',
       edit: '/books/form/:id',

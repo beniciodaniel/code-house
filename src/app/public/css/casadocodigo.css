@@ -1,6 +1,7 @@
 .mainHeader {
     background-color: #FFAA60;
     margin-bottom: 2rem;
+    min-height: 8vh;
 }
 
 .mainHeader .logo {
@@ -25,12 +26,13 @@
 }
 
 .mainContent {
-    min-height: 80%;
+    min-height: 84vh;
 }
 
 .footer {
     background-color: #FBFAF9;
     border-top: 1px solid #EBEBEE;
+    min-height: 8vh;
 }
 
 .footer .logo-footer {
